@@ -1,4 +1,5 @@
 package bancoJava;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -10,10 +11,15 @@ public class JdbcTeste {
 		
 										
 			try {
-				DriverManager.getConnection(url,usuario,senha);
+				Connection conexao = DriverManager.getConnection(url,usuario,senha);				
 				System.out.println("Deu certo a conexão do Banco");
+				
+				// toda conexão aberta precisa ser fechada 
+				// para garantir que uma conexão seja fechada eu posso colocar ela em um bloco finile
+				conexao.close();
+				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
 			
@@ -25,3 +31,5 @@ public class JdbcTeste {
 		
 	}
 }
+
+
